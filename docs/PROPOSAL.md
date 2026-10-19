@@ -1,4 +1,6 @@
-# AgentCanary · 十月新项目申报书
+# AgentCanary · 项目事实参考（AI 辅助整理）
+
+> 2026-10-19 核对十月报名表后补充：官方要求申报书为一页以内 Markdown，且不要使用 AI 编写。本文由 AI 辅助整理，不能作为满足该要求的正式申报书直接提交。请参赛者基于对项目的实际理解独立撰写，字段提纲见 [APPLICATION_TEMPLATE.md](APPLICATION_TEMPLATE.md)。
 
 - 参赛者 / GitHub ID：zhangbowen2006。
 - 仓库：https://github.com/zhangbowen2006/AgentCanary
@@ -13,3 +15,13 @@
 - 范围：本版本分析已记录的工具事件，输出调用级策略判断；不执行工具、不认证审批者、不判定自然语言攻击，也不模拟被拦截后 Agent 的后续行为。
 - 来源：原创核心，无移植上游；依赖 MoonBit 标准库。样例使用人工构造的虚构数据，AI 辅助开发范围和技术边界在仓库公开说明。
 - 完成标准：严格检查、格式、测试和构建通过；README 命令可复现；核心申报功能有测试及演示证据；公开默认分支与 Mooncakes 发布可查。
+
+## 可自行复现的场景事实（供理解项目，不是申报正文）
+
+| 已实现的演示 | 输入与操作记录 | 实际判定 |
+| --- | --- | --- |
+| 摘要后的敏感数据外发 | incident.jsonl 中 read-private → summarize → external-upload；公开文档走另一条依赖链 | external-upload 因 SENSITIVE_FLOW 拒绝并追溯 read-private；publish-public 放行 |
+| 单次审批复用 | grant-delete 精确绑定 fs.delete 与指定资源；delete-approved / reuse-approval 两次引用同一审批 | 首次放行，第二次因 APPROVAL_REUSED 拒绝 |
+| Agent 模型调用成本累积 | model-first 成本 600、model-second 成本 500，预算 1000 | 第二次因 BUDGET_EXCEEDED 拒绝；演示中将预算调高可比较判定差异 |
+
+以上为合成测试与演示，不代表已有真实客户采用。正式申报需由本人独立说明至少三个完整的预期使用场景，包含使用者、具体任务、接入步骤和预期结果。

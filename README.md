@@ -7,7 +7,7 @@
 
 一份客户资料被读取、摘要、再上传：只检查上传调用本身，看不到资料来自哪里。AgentCanary 沿显式 artifact 依赖传播敏感标签，给出来源事件；同时检查审批复用、累计费用、窗口频率和前置步骤。策略升级时，对同一观察记录比较两套策略，确认新增拦截与误拦风险。
 
-[在线实验室](https://zhangbowen2006.github.io/AgentCanary/) · [English](README.en.md) · [严格语义](docs/SEMANTICS.md) · [输入格式](docs/FORMAT.md) · [可执行 API 示例](API.mbt.md) · [参赛申报书](docs/PROPOSAL.md)
+[在线实验室](https://zhangbowen2006.github.io/AgentCanary/) · [English](README.en.md) · [严格语义](docs/SEMANTICS.md) · [输入格式](docs/FORMAT.md) · [可执行 API 示例](API.mbt.md) · [申报要求与本人填写提纲](docs/SUBMISSION.md)
 
 ![交互实验室](docs/assets/desktop.png)
 

@@ -1,19 +1,21 @@
 # 十月报名和验收材料
 
-以下内容可复制到官方表单。工程和材料已准备，**不表示报名已提交或官方已验收**。姓名、联系方式、团队信息与参赛声明应由参赛者本人核实填写。
+下列仓库等客观字段可复制到官方表单。工程和技术参考已准备，**不表示正式申报书已完成、报名已提交或官方已验收**。十月表单明确要求申报书为一页以内 Markdown，且不要使用 AI 编写；正文须由参赛者本人独立撰写。姓名、联系方式、团队信息与参赛声明应由本人核实填写。
 
 | 字段 | 内容 |
 | --- | --- |
 | GitHub ID | zhangbowen2006 |
 | 项目名称 | AgentCanary：AI 工具调用的离线策略回放与回归测试引擎 |
 | 类型 | 十月独立新项目 / 原创 MoonBit 开源库与开发工具 |
+| 表单参赛方向 | 新项目申报-参与季度评选（与本项目参赛意向一致） |
 | GitHub | https://github.com/zhangbowen2006/AgentCanary |
 | Demo | https://zhangbowen2006.github.io/AgentCanary/ |
 | Mooncakes 模块 | zhangbowen2006/agentcanary |
-| 项目说明 | docs/PROPOSAL.md（一页左右 Markdown） |
+| 技术事实参考 | docs/PROPOSAL.md（AI 辅助材料，不能直接作为正式申报书提交） |
+| 本人填写提纲 | docs/APPLICATION_TEMPLATE.md |
 | 许可证 | MIT |
 
-## 项目简介（可直接粘贴）
+## 项目简介（AI 辅助技术参考；申报书正文需本人独立撰写）
 
 AgentCanary 是以 MoonBit 为核心的 AI 工具调用离线策略回放与回归测试引擎。它读取 JSON/JSONL 观察记录，沿 artifact 依赖追踪敏感标签及来源，检查限时单次审批、累计和滑动预算、调用频率与前置步骤；对同一历史比较两套策略，输出新增拒绝、解除拒绝和完整证据；通过自包含用例集将策略行为放入 CI 验证。交付包含可复用 Mooncakes 包、命令行、浏览器实验室、文档、合成样例与跨后端测试。所有计算可离线进行，无模型或云服务依赖。
 
@@ -26,7 +28,13 @@ AgentCanary 是以 MoonBit 为核心的 AI 工具调用离线策略回放与回�
 
 ## 参赛者仍需完成
 
-- 在 [官网](https://moonbitlang.github.io/Hackathon2026/) 当前公布的[飞书报名表](https://bxup9uklfcb.feishu.cn/share/base/form/shrcnWUMlgpbwHaXgzV7HmNhNhg)提交本人信息、公开仓库和项目说明，并保存回执。
+- 选择是否参加过 8、9 月黑客松；填“是”可复用部分个人信息，不要仅凭已有仓库推断参赛经历。
+- 准备常用国内邮箱，表单提示不要使用 Gmail 等国外邮箱；电话尽量可添加微信。
+- 按表单要求本人填写银行卡账号及所属分行；这些信息不进入公开仓库。
+- 首次报名分支另列 GitHub ID、身份证正反面照片、所属高校/组织及学信网/学历相关证明；团队按表单要求补全各队员信息。身份及收款材料直接提交给官方表单，不要提交到 GitHub。
+- 本人独立完成一页以内 Markdown 申报书，包含项目简介、方向与通用性、至少三个完整预期使用场景、核心功能、原创/移植/参考来源及仓库链接。官方要求不少于 10 个有效 commits，是否有效由赛事方判断，不能凑数。
+
+- 在 [官网](https://moonbitlang.github.io/Hackathon2026/) 当前公布的[飞书报名表](https://bxup9uklfcb.feishu.cn/share/base/form/shrcnWUMlgpbwHaXgzV7HmNhNhg)提交本人信息、公开仓库和本人撰写的项目申报书，并保存回执。
 - 加入官网赛事交流群，按官网要求将群昵称改为 `zhangbowen2006`。
 - 核实是否存在其他报名/已审核项目；本仓库不能作为同一成果重复申报。
 - 阅读来源披露与语义文档，确认能够讲解并维护 AI 辅助产出的代码。
