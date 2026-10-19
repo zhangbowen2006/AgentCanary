@@ -8,6 +8,12 @@ if (run.error || run.status !== 0) { console.error('MoonBit build failed. Instal
 mkdirSync(resolve(root, 'dist'), { recursive: true });
 mkdirSync(resolve(root, 'web'), { recursive: true });
 mkdirSync(resolve(root, 'web/data'), { recursive: true });
+for (const folder of ['dist/licenses', 'web/licenses']) {
+  mkdirSync(resolve(root, folder), { recursive: true });
+  for (const name of ['LICENSE', 'NOTICE']) {
+    copyFileSync(resolve(root, `third_party/MoonBit-core-${name}.txt`), resolve(root, folder, `MoonBit-core-${name}.txt`));
+  }
+}
 for (const output of ['dist/engine.js', 'web/engine.js']) {
   copyFileSync(resolve(root, '_build/js/release/build/api/api.js'), resolve(root, output));
 }

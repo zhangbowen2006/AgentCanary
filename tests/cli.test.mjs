@@ -68,7 +68,7 @@ test('strict CLI arguments and missing files return exit 2', () => {
 
 test('help and version do not require a trace', () => {
   assert.equal(run('--help').status, 0);
-  assert.equal(run('--version').stdout.trim(), '0.1.0');
+  assert.equal(run('--version').stdout.trim(), '0.1.1');
 });
 
 test('repeated pure engine calls are byte deterministic', () => {

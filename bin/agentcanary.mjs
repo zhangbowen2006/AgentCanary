@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { readFileSync, statSync } from 'node:fs';
 
-const help = `AgentCanary 0.1.0 — offline AI tool policy replay
+const help = `AgentCanary 0.1.1 — offline AI tool policy replay
 
   audit   --policy FILE --trace FILE|- [--format json|text] [--fail-on-deny]
   compare --baseline FILE --candidate FILE --trace FILE|- [--format json|text]
@@ -73,7 +73,7 @@ let options;
 try {
   options = parse(process.argv.slice(2));
   if (options.help) console.log(help);
-  else if (options.version) console.log('0.1.0');
+  else if (options.version) console.log('0.1.1');
   else {
     let engine;
     try { engine = await import('../dist/engine.js'); }

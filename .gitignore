@@ -6,6 +6,8 @@
 /web/engine.js
 /web/engine.js.map
 /web/data/
+/web/licenses/
+/deliverables/
 /artifacts/
 *.tmp
 .DS_Store

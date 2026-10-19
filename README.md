@@ -13,7 +13,7 @@
 
 ## 五分钟运行
 
-安装 [MoonBit 工具链](https://www.moonbitlang.com/download/)；CLI 和浏览器演示还需 Node.js 22 或更高版本。无需 npm install、API Key、模型或云服务。
+安装 [MoonBit 工具链](https://www.moonbitlang.com/download/) **0.10.16 或更高版本**（旧版可运行 `moon upgrade`）；CLI 和浏览器演示还需 Node.js 22 或更高版本。无需 npm install、API Key、模型或云服务。
 
 ```sh
 git clone https://github.com/zhangbowen2006/AgentCanary.git
@@ -34,7 +34,7 @@ node scripts/serve.mjs
 ## 在 MoonBit 项目中复用
 
 ```sh
-moon add zhangbowen2006/agentcanary@0.1.0
+moon add zhangbowen2006/agentcanary@0.1.1
 ```
 
 在调用包的 `moon.pkg` 中添加：

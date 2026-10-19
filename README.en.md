@@ -14,9 +14,9 @@ node bin/agentcanary.mjs test examples/regressions.json
 node scripts/serve.mjs
 ```
 
-Requires MoonBit and Node 22+ for adapters. No npm dependencies, credentials, models or external API calls. Visit `http://127.0.0.1:4173` or the [hosted demo](https://zhangbowen2006.github.io/AgentCanary/). Imported data stays in the browser.
+Requires MoonBit 0.10.16+ and Node 22+ for adapters. No npm dependencies, credentials, models or external API calls. Visit `http://127.0.0.1:4173` or the [hosted demo](https://zhangbowen2006.github.io/AgentCanary/). Imported data stays in the browser.
 
-Install the reusable library with `moon add zhangbowen2006/agentcanary@0.1.0`. Public APIs: `parse_policy`, `parse_trace`, `evaluate`, `compare`, `run_suite`, and their JSON interfaces. [Executable API examples](API.mbt.md) are compiled and tested. [Generated interface](pkg.generated.mbti).
+Install the reusable library with `moon add zhangbowen2006/agentcanary@0.1.1`. Public APIs: `parse_policy`, `parse_trace`, `evaluate`, `compare`, `run_suite`, and their JSON interfaces. [Executable API examples](API.mbt.md) are compiled and tested. [Generated interface](pkg.generated.mbti).
 
 Supports `allow`, `deny`, `block_labels`, `require_approval`, `budget`, `rate`, and `require_before`. Deny overrides allow. Unmatched calls follow an explicit default verdict. Every regression-suite call requires an expectation; missing assertions fail the case. CLI exit codes: 0 passed, 1 gate/test failure, 2 invalid input/setup. Use `--help` for all flags.
 
