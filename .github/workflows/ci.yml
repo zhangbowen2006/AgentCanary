@@ -43,3 +43,17 @@ jobs:
       - run: node scripts/build.mjs
       - run: node --test tests/cli.test.mjs
       - run: node bin/agentcanary.mjs test examples/regressions.json
+      - uses: actions/setup-python@v5
+        if: runner.os == 'Linux'
+        with:
+          python-version: '3.12'
+      - name: Browser integration checks
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+          node scripts/serve.mjs > /tmp/agentcanary-preview.log 2>&1 &
+          PREVIEW_PID=$!
+          trap 'kill "$PREVIEW_PID"' EXIT
+          python tests/browser.py
