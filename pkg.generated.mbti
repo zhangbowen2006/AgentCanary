@@ -24,6 +24,8 @@ pub fn run_suite_json(String) -> String raise InputError
 pub(all) suberror InputError {
   InputError(String)
 } derive(Eq)
+pub fn InputError::equal(Self, Self) -> Bool
+pub fn InputError::not_equal(Self, Self) -> Bool
 
 // Types and methods
 pub(all) struct CaseResult {
@@ -32,6 +34,9 @@ pub(all) struct CaseResult {
   calls : Int
   mismatches : Array[Mismatch]
 } derive(Eq, ToJson)
+pub fn CaseResult::equal(Self, Self) -> Bool
+pub fn CaseResult::not_equal(Self, Self) -> Bool
+pub fn CaseResult::to_json(Self) -> Json
 
 pub(all) struct Change {
   event_id : String
@@ -43,6 +48,9 @@ pub(all) struct Change {
   before_findings : Array[Finding]
   after_findings : Array[Finding]
 } derive(Eq, ToJson)
+pub fn Change::equal(Self, Self) -> Bool
+pub fn Change::not_equal(Self, Self) -> Bool
+pub fn Change::to_json(Self) -> Json
 
 pub(all) struct Comparison {
   schema_version : Int
@@ -53,6 +61,9 @@ pub(all) struct Comparison {
   explanation_changes : Int
   changes : Array[Change]
 } derive(Eq, ToJson)
+pub fn Comparison::equal(Self, Self) -> Bool
+pub fn Comparison::not_equal(Self, Self) -> Bool
+pub fn Comparison::to_json(Self) -> Json
 
 pub(all) struct Decision {
   event_id : String
@@ -64,6 +75,9 @@ pub(all) struct Decision {
   findings : Array[Finding]
   taints : Array[Taint]
 } derive(Eq, ToJson)
+pub fn Decision::equal(Self, Self) -> Bool
+pub fn Decision::not_equal(Self, Self) -> Bool
+pub fn Decision::to_json(Self) -> Json
 
 pub(all) struct Event {
   id : String
@@ -81,6 +95,9 @@ pub(all) struct Event {
   expires_ms : Int?
   outcome : String
 } derive(Eq, ToJson)
+pub fn Event::equal(Self, Self) -> Bool
+pub fn Event::not_equal(Self, Self) -> Bool
+pub fn Event::to_json(Self) -> Json
 
 pub(all) struct Finding {
   rule_id : String
@@ -88,6 +105,9 @@ pub(all) struct Finding {
   message : String
   evidence : Array[String]
 } derive(Eq, ToJson)
+pub fn Finding::equal(Self, Self) -> Bool
+pub fn Finding::not_equal(Self, Self) -> Bool
+pub fn Finding::to_json(Self) -> Json
 
 pub(all) struct Mismatch {
   event_id : String
@@ -96,12 +116,18 @@ pub(all) struct Mismatch {
   expected_codes : Array[String]
   actual_codes : Array[String]
 } derive(Eq, ToJson)
+pub fn Mismatch::equal(Self, Self) -> Bool
+pub fn Mismatch::not_equal(Self, Self) -> Bool
+pub fn Mismatch::to_json(Self) -> Json
 
 pub(all) struct Policy {
   name : String
   default_decision : String
   rules : Array[Rule]
 } derive(Eq)
+pub fn Policy::equal(Self, Self) -> Bool
+pub fn Policy::not_equal(Self, Self) -> Bool
+pub fn Policy::to_json(Self) -> Json
 pub impl ToJson for Policy
 
 pub(all) struct Report {
@@ -114,6 +140,9 @@ pub(all) struct Report {
   observed_cost : Int64
   decisions : Array[Decision]
 } derive(Eq, ToJson)
+pub fn Report::equal(Self, Self) -> Bool
+pub fn Report::not_equal(Self, Self) -> Bool
+pub fn Report::to_json(Self) -> Json
 
 pub(all) struct Rule {
   id : String
@@ -125,6 +154,9 @@ pub(all) struct Rule {
   window_ms : Int?
   prerequisite : String?
 } derive(Eq)
+pub fn Rule::equal(Self, Self) -> Bool
+pub fn Rule::not_equal(Self, Self) -> Bool
+pub fn Rule::to_json(Self) -> Json
 pub impl ToJson for Rule
 
 pub(all) struct SuiteReport {
@@ -135,11 +167,17 @@ pub(all) struct SuiteReport {
   failed : Int
   results : Array[CaseResult]
 } derive(Eq, ToJson)
+pub fn SuiteReport::equal(Self, Self) -> Bool
+pub fn SuiteReport::not_equal(Self, Self) -> Bool
+pub fn SuiteReport::to_json(Self) -> Json
 
 pub(all) struct Taint {
   label : String
   sources : Array[String]
 } derive(Eq, ToJson)
+pub fn Taint::equal(Self, Self) -> Bool
+pub fn Taint::not_equal(Self, Self) -> Bool
+pub fn Taint::to_json(Self) -> Json
 
 // Type aliases
 
