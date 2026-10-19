@@ -1,0 +1,10 @@
+/_build/
+/.mooncakes/
+/work/
+/dist/
+/node_modules/
+/web/engine.js
+/web/engine.js.map
+/artifacts/
+*.tmp
+.DS_Store
