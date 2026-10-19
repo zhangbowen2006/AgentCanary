@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101818">
+  <meta name="description" content="AgentCanary — 在本地回放 AI 工具调用，追踪敏感数据、审批与预算，验证策略变更。">
+  <title>AgentCanary · 策略回放实验室</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./"><img src="icon.svg" alt="" width="30" height="30"><span>AgentCanary<span class="brand-tag">LAB</span></span></a>
+    <nav aria-label="项目导航"><span class="local"><i></i> 数据留在当前浏览器</span><a href="https://github.com/zhangbowen2006/AgentCanary" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div><p class="eyebrow">OBSERVE. REPLAY. VERIFY.</p><h1>让每一次工具调用，<br><span>都有据可查。</span></h1><p class="intro">沿数据流找到风险，重放策略变化。<br>在部署 Agent 之前，先让安全规则经受一次真实的回归测试。</p></div>
+      <div class="hero-note"><span class="outline-chip">POLICY REPLAY / 01</span><div class="signal" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><p>同一条记录。两套策略。<br><strong>看见差异，理解原因。</strong></p></div>
+    </section>
+    <div class="toolbar"><div class="tabs" aria-label="样例场景"><button class="active" data-scenario="all">完整事件</button><button data-scenario="flow">敏感数据流</button><button data-scenario="approval">单次审批</button><button data-scenario="budget">调用预算</button></div><button id="import-button" class="secondary">导入记录 <span>↑</span></button><input id="trace-file" type="file" accept=".json,.jsonl" hidden></div>
+    <div id="status" role="status" aria-live="polite">正在加载回放引擎…</div>
+    <section class="metrics" aria-label="回放统计">
+      <div class="metric"><span>工具调用</span><strong id="calls">—</strong><small id="events-label">等待回放</small></div>
+      <div class="metric risk"><span>策略命中</span><strong id="denied">—</strong><small>需要处理的调用</small></div>
+      <div class="metric"><span>正常放行</span><strong id="allowed">—</strong><small>保留正常工作流</small></div>
+      <div class="metric"><span>观察成本</span><strong id="cost">—</strong><small>整数微积分 · microcredits</small></div>
+    </section>
+    <div class="workspace">
+      <section class="panel trace-panel">
+        <div class="panel-title"><div><p class="eyebrow">EXECUTION TRACE</p><h2>调用时间线</h2></div><label class="filter"><input id="only-denied" type="checkbox"> 只看风险</label></div>
+        <div class="timeline-head"><span>时间 / 操作</span><span>判定</span></div>
+        <div id="timeline" class="timeline" aria-label="工具调用列表"></div>
+        <div class="trace-footer"><span><i class="dot green"></i>放行 <i class="dot red"></i>拒绝 <i class="dot yellow"></i>审批事件不计调用</span><button id="export-report" class="text-button">导出报告 ↓</button></div>
+      </section>
+      <aside class="sidebar">
+        <section class="panel controls">
+          <div class="panel-title"><div><p class="eyebrow">POLICY EXPERIMENT</p><h2>策略实验室</h2></div><span class="tiny-tag">LIVE</span></div>
+          <label class="switch-row"><span><strong>阻止敏感数据外发</strong><small>继承所有上游 artifact 的标签</small></span><input type="checkbox" id="block-flow" checked role="switch"></label>
+          <label class="switch-row"><span><strong>危险操作需要审批</strong><small>绑定会话、工具与资源，限时单次</small></span><input type="checkbox" id="need-approval" checked role="switch"></label>
+          <label class="budget-control" for="budget"><span>模型累计预算 <small>microcredits / 会话</small></span><input id="budget" type="number" min="0" max="2147483647" step="100" value="1000"></label>
+          <button id="compare" class="primary">对比基线策略 <span>↗</span></button>
+          <div id="comparison" class="comparison" hidden></div>
+        </section>
+        <section class="panel inspector"><div class="panel-title"><div><p class="eyebrow">CAUSAL EVIDENCE</p><h2>判定与来源</h2></div><span class="inspection-icon" aria-hidden="true">⌕</span></div><div id="inspector"></div></section>
+      </aside>
+    </div>
+    <section class="panel editors"><div class="panel-title"><div><p class="eyebrow">REPRODUCIBLE INPUT</p><h2>把假设变成可重复的测试</h2></div><button id="replay" class="secondary">应用输入并重放 ↻</button></div><p class="editor-hint">可以直接编辑策略 JSON 与执行记录。记录支持 JSON 数组和 JSONL；所有调用只在本地分析。</p><div class="editor-grid"><label>当前策略 · JSON<textarea id="policy-editor" spellcheck="false" aria-label="当前策略 JSON"></textarea></label><label>观察记录 · JSON / JSONL<textarea id="trace-editor" spellcheck="false" aria-label="执行记录 JSON 或 JSONL"></textarea></label></div></section>
+    <footer><p><strong>AgentCanary</strong> / MoonBit 开源策略回放引擎</p><p>离线分析已发生的记录；判定不代表工具已被实际拦截。<a href="https://github.com/zhangbowen2006/AgentCanary/blob/main/docs/SEMANTICS.md">了解判定边界 ↗</a></p></footer>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
