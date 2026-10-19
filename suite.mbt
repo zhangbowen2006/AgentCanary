@@ -11,17 +11,17 @@ pub(all) struct Mismatch {
 pub(all) struct CaseResult {
   name : String
   passed : Bool
-  calls : Int
+  calls : Int32
   mismatches : Array[Mismatch]
 } derive(Eq, ToJson)
 
 ///|
 pub(all) struct SuiteReport {
-  schema_version : Int
+  schema_version : Int32
   policy : String
-  cases : Int
-  passed : Int
-  failed : Int
+  cases : Int32
+  passed : Int32
+  failed : Int32
   results : Array[CaseResult]
 } derive(Eq, ToJson)
 
@@ -66,7 +66,7 @@ fn expectations(
         if decision == "allow" && !codes.is_empty() {
           invalid(path, "allow expectation cannot contain violation codes")
         }
-        result[id] = { event_id: id, decision, codes }
+        result[id] = { event_id: id, decision, codes, }
       }
     }
     _ => invalid(path, "expected expectation array")
@@ -130,7 +130,7 @@ fn run_case(
       })
     }
   }
-  { name, passed: mismatches.is_empty(), calls: report.calls, mismatches }
+  { name, passed: mismatches.is_empty(), calls: report.calls, mismatches, }
 }
 
 ///|

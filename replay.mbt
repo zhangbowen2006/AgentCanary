@@ -7,7 +7,7 @@ priv struct Grant {
 
 ///|
 priv struct Charge {
-  at_ms : Int
+  at_ms : Int32
   value : Int64
   event_id : String
 }
@@ -15,7 +15,7 @@ priv struct Charge {
 ///|
 priv struct Ledger {
   items : Array[Charge]
-  mut start : Int
+  mut start : Int32
   mut total : Int64
 }
 
@@ -24,7 +24,7 @@ fn add_charge(
   ledger : Ledger,
   event : Event,
   value : Int64,
-  window : Int?,
+  window : Int32?,
 ) -> Int64 {
   if window is Some(width) {
     // The window is (now - width, now]. The exact lower endpoint is excluded.
@@ -34,7 +34,7 @@ fn add_charge(
       ledger.start += 1
     }
   }
-  ledger.items.push({ at_ms: event.at_ms, value, event_id: event.id })
+  ledger.items.push({ at_ms: event.at_ms, value, event_id: event.id, })
   ledger.total += value
   ledger.total
 }
@@ -73,7 +73,7 @@ fn finding(
   message : String,
   evidence : Array[String],
 ) -> Finding {
-  { rule_id: rule.id, code, message, evidence }
+  { rule_id: rule.id, code, message, evidence, }
 }
 
 ///|

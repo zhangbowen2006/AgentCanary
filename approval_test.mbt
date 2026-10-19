@@ -8,11 +8,11 @@ fn approval_policy() -> @agentcanary.Policy raise {
 ///|
 fn grant(
   id : String,
-  seq : Int,
-  expiry : Int,
-  session? : String = "s1",
-  resource? : String = "/workspace/a.txt",
-  tool? : String = "fs.delete",
+  seq : Int32,
+  expiry : Int32,
+  session~ : String = "s1",
+  resource~ : String = "/workspace/a.txt",
+  tool~ : String = "fs.delete",
 ) -> @agentcanary.Event {
   ev(id, seq, kind="approve", tool~, resource~, expires_ms=expiry, session~)
 }

@@ -57,7 +57,7 @@ fn text_field(
 }
 
 ///|
-fn int_at(value : Json, path : String) -> Int raise InputError {
+fn int_at(value : Json, path : String) -> Int32 raise InputError {
   match value {
     Number(n, ..) => {
       if n < 0.0 || n > 2147483647.0 || n != n.to_int().to_double() {
@@ -74,7 +74,7 @@ fn optional_int(
   fields : Map[String, Json],
   key : String,
   path : String,
-) -> Int? raise InputError {
+) -> Int32? raise InputError {
   match fields.get(key) {
     Some(Null) | None => None
     Some(value) => Some(int_at(value, "\{path}.\{key}"))
@@ -124,7 +124,7 @@ fn parse_json(source : String, path : String) -> Json raise InputError {
   let value = @json.parse(source) catch {
     _ => invalid(path, "invalid JSON or nesting exceeds 32")
   }
-  let cursor : Cursor = { text: source, offset: 0 }
+  let cursor : Cursor = { text: source, offset: 0, }
   cursor.value(path)
   value
 }

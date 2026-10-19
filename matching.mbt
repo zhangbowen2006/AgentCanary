@@ -39,7 +39,7 @@ fn rule_matches(rule : Rule, event : Event) -> Bool {
 fn check_text(
   value : String,
   path : String,
-  max? : Int = 256,
+  max~ : Int32 = 256,
 ) -> Unit raise InputError {
   if value.is_empty() ||
     value.length() > max ||

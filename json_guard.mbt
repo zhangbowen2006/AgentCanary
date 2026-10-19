@@ -1,7 +1,7 @@
 ///|
 priv struct Cursor {
   text : String
-  mut offset : Int
+  mut offset : Int32
 }
 
 ///|

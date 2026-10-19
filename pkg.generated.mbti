@@ -31,7 +31,7 @@ pub fn InputError::not_equal(Self, Self) -> Bool
 pub(all) struct CaseResult {
   name : String
   passed : Bool
-  calls : Int
+  calls : Int32
   mismatches : Array[Mismatch]
 } derive(Eq, ToJson)
 pub fn CaseResult::equal(Self, Self) -> Bool
@@ -53,12 +53,12 @@ pub fn Change::not_equal(Self, Self) -> Bool
 pub fn Change::to_json(Self) -> Json
 
 pub(all) struct Comparison {
-  schema_version : Int
+  schema_version : Int32
   baseline : String
   candidate : String
-  newly_denied : Int
-  newly_allowed : Int
-  explanation_changes : Int
+  newly_denied : Int32
+  newly_allowed : Int32
+  explanation_changes : Int32
   changes : Array[Change]
 } derive(Eq, ToJson)
 pub fn Comparison::equal(Self, Self) -> Bool
@@ -68,8 +68,8 @@ pub fn Comparison::to_json(Self) -> Json
 pub(all) struct Decision {
   event_id : String
   session : String
-  seq : Int
-  at_ms : Int
+  seq : Int32
+  at_ms : Int32
   tool : String
   decision : String
   findings : Array[Finding]
@@ -82,17 +82,17 @@ pub fn Decision::to_json(Self) -> Json
 pub(all) struct Event {
   id : String
   session : String
-  seq : Int
-  at_ms : Int
+  seq : Int32
+  at_ms : Int32
   kind : String
   tool : String
   resource : String
   inputs : Array[String]
   output : String?
   labels : Array[String]
-  cost : Int
+  cost : Int32
   approval : String?
-  expires_ms : Int?
+  expires_ms : Int32?
   outcome : String
 } derive(Eq, ToJson)
 pub fn Event::equal(Self, Self) -> Bool
@@ -131,12 +131,12 @@ pub fn Policy::to_json(Self) -> Json
 pub impl ToJson for Policy
 
 pub(all) struct Report {
-  schema_version : Int
+  schema_version : Int32
   policy : String
-  events : Int
-  calls : Int
-  allowed : Int
-  denied : Int
+  events : Int32
+  calls : Int32
+  allowed : Int32
+  denied : Int32
   observed_cost : Int64
   decisions : Array[Decision]
 } derive(Eq, ToJson)
@@ -150,8 +150,8 @@ pub(all) struct Rule {
   tool : String
   resource : String
   labels : Array[String]
-  limit : Int?
-  window_ms : Int?
+  limit : Int32?
+  window_ms : Int32?
   prerequisite : String?
 } derive(Eq)
 pub fn Rule::equal(Self, Self) -> Bool
@@ -160,11 +160,11 @@ pub fn Rule::to_json(Self) -> Json
 pub impl ToJson for Rule
 
 pub(all) struct SuiteReport {
-  schema_version : Int
+  schema_version : Int32
   policy : String
-  cases : Int
-  passed : Int
-  failed : Int
+  cases : Int32
+  passed : Int32
+  failed : Int32
   results : Array[CaseResult]
 } derive(Eq, ToJson)
 pub fn SuiteReport::equal(Self, Self) -> Bool

@@ -5,11 +5,11 @@ fn validate_trace(events : Array[Event]) -> Unit raise InputError {
     invalid("trace", "at most 10000 events")
   }
   let ids : Map[String, Bool] = Map([])
-  let clocks : Map[String, (Int, Int)] = Map([])
+  let clocks : Map[String, (Int32, Int32)] = Map([])
   let artifacts : Map[(String, String), Bool] = Map([])
   let approvals : Map[(String, String), Bool] = Map([])
   let vocabulary : Map[String, Array[String]] = Map([])
-  let origins : Map[(String, String), Int] = Map([])
+  let origins : Map[(String, String), Int32] = Map([])
   for i, event in events {
     let path = "trace[\{i}]"
     check_text(event.id, "\{path}.id")

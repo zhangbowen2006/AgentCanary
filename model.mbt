@@ -4,17 +4,17 @@
 pub(all) struct Event {
   id : String
   session : String
-  seq : Int
-  at_ms : Int
+  seq : Int32
+  at_ms : Int32
   kind : String
   tool : String
   resource : String
   inputs : Array[String]
   output : String?
   labels : Array[String]
-  cost : Int
+  cost : Int32
   approval : String?
-  expires_ms : Int?
+  expires_ms : Int32?
   outcome : String
 } derive(Eq, ToJson)
 
@@ -26,8 +26,8 @@ pub(all) struct Rule {
   tool : String
   resource : String
   labels : Array[String]
-  limit : Int?
-  window_ms : Int?
+  limit : Int32?
+  window_ms : Int32?
   prerequisite : String?
 } derive(Eq)
 
@@ -57,8 +57,8 @@ pub(all) struct Finding {
 pub(all) struct Decision {
   event_id : String
   session : String
-  seq : Int
-  at_ms : Int
+  seq : Int32
+  at_ms : Int32
   tool : String
   decision : String
   findings : Array[Finding]
@@ -67,12 +67,12 @@ pub(all) struct Decision {
 
 ///|
 pub(all) struct Report {
-  schema_version : Int
+  schema_version : Int32
   policy : String
-  events : Int
-  calls : Int
-  allowed : Int
-  denied : Int
+  events : Int32
+  calls : Int32
+  allowed : Int32
+  denied : Int32
   observed_cost : Int64
   decisions : Array[Decision]
 } derive(Eq, ToJson)
@@ -91,12 +91,12 @@ pub(all) struct Change {
 
 ///|
 pub(all) struct Comparison {
-  schema_version : Int
+  schema_version : Int32
   baseline : String
   candidate : String
-  newly_denied : Int
-  newly_allowed : Int
-  explanation_changes : Int
+  newly_denied : Int32
+  newly_allowed : Int32
+  explanation_changes : Int32
   changes : Array[Change]
 } derive(Eq, ToJson)
 

@@ -19,7 +19,7 @@ fn merge_taint(
       return
     }
   }
-  target.push({ label, sources: sources.copy() })
+  target.push({ label, sources: sources.copy(), })
 }
 
 ///|

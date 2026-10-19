@@ -1,7 +1,7 @@
 ///|
 fn policy(
   rules : String,
-  default? : String = "allow",
+  default~ : String = "allow",
 ) -> @agentcanary.Policy raise {
   @agentcanary.parse_policy(
     "{\"schema_version\":1,\"name\":\"test\",\"default_decision\":\"" +
@@ -15,19 +15,19 @@ fn policy(
 ///|
 fn ev(
   id : String,
-  seq : Int,
-  at_ms? : Int,
-  tool? : String = "fs.read",
-  resource? : String = "/workspace/a.txt",
-  session? : String = "s1",
-  inputs? : Array[String] = [],
+  seq : Int32,
+  at_ms? : Int32,
+  tool~ : String = "fs.read",
+  resource~ : String = "/workspace/a.txt",
+  session~ : String = "s1",
+  inputs~ : Array[String] = [],
   output? : String,
-  labels? : Array[String] = [],
-  cost? : Int = 0,
+  labels~ : Array[String] = [],
+  cost~ : Int32 = 0,
   approval? : String,
-  outcome? : String = "ok",
-  kind? : String = "call",
-  expires_ms? : Int,
+  outcome~ : String = "ok",
+  kind~ : String = "call",
+  expires_ms? : Int32,
 ) -> @agentcanary.Event {
   {
     id,
@@ -51,7 +51,7 @@ fn ev(
 fn verdict(
   p : @agentcanary.Policy,
   events : Array[@agentcanary.Event],
-  index? : Int = 0,
+  index~ : Int32 = 0,
 ) -> String raise {
   @agentcanary.evaluate(p, events).decisions[index].decision
 }
@@ -60,7 +60,7 @@ fn verdict(
 fn code(
   p : @agentcanary.Policy,
   events : Array[@agentcanary.Event],
-  index? : Int = 0,
+  index~ : Int32 = 0,
 ) -> String raise {
   @agentcanary.evaluate(p, events).decisions[index].findings[0].code
 }
