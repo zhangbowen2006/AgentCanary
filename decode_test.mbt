@@ -76,6 +76,30 @@ test "numeric fields reject fractions, overflow, negative, bool and null" {
 }
 
 ///|
+test "decimal spellings cannot exploit floating point rounding or underflow" {
+  for
+    n in [
+      "1e-999", "0.000000000000000000000001", "2147483646.99999999999", "1.00000000000000000001",
+      "2147483647.000000001",
+    ] {
+    let e = "{\"id\":\"a\",\"session\":\"s\",\"seq\":" +
+      n +
+      ",\"at_ms\":0,\"tool\":\"x\",\"resource\":\"r\"}"
+    assert_true(rejects_json_trace(e))
+  }
+}
+
+///|
+test "exact exponent integers, trailing zeros and signed zero are valid" {
+  for n in ["10e-1", "1.0000", "0e999", "-0", "2.147483647e9", "1e+0", "0.0000"] {
+    let e = "{\"id\":\"a\",\"session\":\"s\",\"seq\":" +
+      n +
+      ",\"at_ms\":0,\"tool\":\"x\",\"resource\":\"r\"}"
+    assert_eq(@agentcanary.parse_trace(e).length(), 1)
+  }
+}
+
+///|
 test "identifiers reject empty values and controls without leaking input in diagnostics" {
   assert_true(rejects_trace([ev("", 1)]))
   assert_true(rejects_trace([ev("a\nsecret", 1)]))

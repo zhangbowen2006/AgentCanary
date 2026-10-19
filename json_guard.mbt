@@ -108,6 +108,7 @@ fn Cursor::value(self : Cursor, path : String) -> Unit raise InputError {
   } else if c == 34 {
     self.quoted() |> ignore
   } else {
+    let start = self.offset
     while self.offset < self.text.length() {
       let c = self.text[self.offset]
       if c == 44 ||
@@ -120,6 +121,11 @@ fn Cursor::value(self : Cursor, path : String) -> Unit raise InputError {
         break
       }
       self.offset += 1
+    }
+    // All accepted schemas use integer numeric fields. Inspect the original
+    // token here: the standard JSON parser may discard the decimal spelling.
+    if c == 45 || (c >= 48 && c <= 57) {
+      exact_integer(self.text[start:self.offset].to_owned(), path) |> ignore
     }
   }
 }
