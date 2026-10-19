@@ -5,6 +5,9 @@ import {
 
 options(
   link: {
-    "js": { "exports": [ "audit", "compare_policies" ], "format": "esm" },
+    "js": {
+      "exports": [ "audit", "compare_policies", "test_suite" ],
+      "format": "esm",
+    },
   },
 )

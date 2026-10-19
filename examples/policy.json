@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "name": "Research agent / guarded",
+  "default_decision": "deny",
+  "rules": [
+    {"id": "known-tools", "kind": "allow", "tool": "fs.*", "resource": "/workspace/*"},
+    {"id": "local-transforms", "kind": "allow", "tool": "text.*"},
+    {"id": "model", "kind": "allow", "tool": "llm.*"},
+    {"id": "network", "kind": "allow", "tool": "net.*"},
+    {"id": "protect-secrets", "kind": "block_labels", "tool": "net.*", "labels": ["secret", "personal"]},
+    {"id": "consent-to-delete", "kind": "require_approval", "tool": "fs.delete"},
+    {"id": "model-budget", "kind": "budget", "tool": "llm.*", "limit": 1000},
+    {"id": "egress-rate", "kind": "rate", "tool": "net.*", "limit": 3, "window_ms": 1000}
+  ]
+}

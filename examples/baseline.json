@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "name": "Research agent / baseline",
+  "default_decision": "allow",
+  "rules": [
+    {"id": "consent-to-delete", "kind": "require_approval", "tool": "fs.delete"}
+  ]
+}

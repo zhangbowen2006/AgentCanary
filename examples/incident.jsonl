@@ -1,0 +1,10 @@
+{"id":"read-private","session":"research","seq":1,"at_ms":0,"tool":"fs.read","resource":"/workspace/customer.csv","output":"customer-data","labels":["personal"]}
+{"id":"summarize","session":"research","seq":2,"at_ms":100,"tool":"text.summarize","resource":"local","inputs":["customer-data"],"output":"summary"}
+{"id":"external-upload","session":"research","seq":3,"at_ms":200,"tool":"net.post","resource":"https://example.invalid/upload","inputs":["summary"]}
+{"id":"read-public","session":"research","seq":4,"at_ms":300,"tool":"fs.read","resource":"/workspace/README.md","output":"public-doc"}
+{"id":"publish-public","session":"research","seq":5,"at_ms":400,"tool":"net.post","resource":"https://example.invalid/docs","inputs":["public-doc"]}
+{"id":"grant-delete","session":"research","seq":6,"at_ms":500,"kind":"approve","tool":"fs.delete","resource":"/workspace/cache.tmp","expires_ms":1500}
+{"id":"delete-approved","session":"research","seq":7,"at_ms":600,"tool":"fs.delete","resource":"/workspace/cache.tmp","approval":"grant-delete"}
+{"id":"reuse-approval","session":"research","seq":8,"at_ms":700,"tool":"fs.delete","resource":"/workspace/cache.tmp","approval":"grant-delete"}
+{"id":"model-first","session":"research","seq":9,"at_ms":800,"tool":"llm.complete","resource":"local-model","cost":600}
+{"id":"model-second","session":"research","seq":10,"at_ms":900,"tool":"llm.complete","resource":"local-model","cost":500}

@@ -34,6 +34,8 @@ pub fn compare(
         after: b.decision,
         before_rules: rules_of(a),
         after_rules: rules_of(b),
+        before_findings: a.findings,
+        after_findings: b.findings,
       })
     }
   }

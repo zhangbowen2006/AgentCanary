@@ -29,14 +29,14 @@ pub(all) struct Rule {
   limit : Int?
   window_ms : Int?
   prerequisite : String?
-} derive(Eq, ToJson)
+} derive(Eq)
 
 ///|
 pub(all) struct Policy {
   name : String
   default_decision : String
   rules : Array[Rule]
-} derive(Eq, ToJson)
+} derive(Eq)
 
 ///|
 /// Source event IDs explaining one sensitivity label.
@@ -85,6 +85,8 @@ pub(all) struct Change {
   after : String
   before_rules : Array[String]
   after_rules : Array[String]
+  before_findings : Array[Finding]
+  after_findings : Array[Finding]
 } derive(Eq, ToJson)
 
 ///|

@@ -16,12 +16,23 @@ pub fn parse_policy(String) -> Policy raise InputError
 
 pub fn parse_trace(String) -> Array[Event] raise InputError
 
+pub fn run_suite(String) -> SuiteReport raise InputError
+
+pub fn run_suite_json(String) -> String raise InputError
+
 // Errors
 pub(all) suberror InputError {
   InputError(String)
 } derive(Eq)
 
 // Types and methods
+pub(all) struct CaseResult {
+  name : String
+  passed : Bool
+  calls : Int
+  mismatches : Array[Mismatch]
+} derive(Eq, ToJson)
+
 pub(all) struct Change {
   event_id : String
   session : String
@@ -29,6 +40,8 @@ pub(all) struct Change {
   after : String
   before_rules : Array[String]
   after_rules : Array[String]
+  before_findings : Array[Finding]
+  after_findings : Array[Finding]
 } derive(Eq, ToJson)
 
 pub(all) struct Comparison {
@@ -76,11 +89,20 @@ pub(all) struct Finding {
   evidence : Array[String]
 } derive(Eq, ToJson)
 
+pub(all) struct Mismatch {
+  event_id : String
+  expected : String
+  actual : String
+  expected_codes : Array[String]
+  actual_codes : Array[String]
+} derive(Eq, ToJson)
+
 pub(all) struct Policy {
   name : String
   default_decision : String
   rules : Array[Rule]
-} derive(Eq, ToJson)
+} derive(Eq)
+pub impl ToJson for Policy
 
 pub(all) struct Report {
   schema_version : Int
@@ -102,6 +124,16 @@ pub(all) struct Rule {
   limit : Int?
   window_ms : Int?
   prerequisite : String?
+} derive(Eq)
+pub impl ToJson for Rule
+
+pub(all) struct SuiteReport {
+  schema_version : Int
+  policy : String
+  cases : Int
+  passed : Int
+  failed : Int
+  results : Array[CaseResult]
 } derive(Eq, ToJson)
 
 pub(all) struct Taint {

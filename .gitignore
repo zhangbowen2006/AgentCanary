@@ -5,6 +5,7 @@
 /node_modules/
 /web/engine.js
 /web/engine.js.map
+/web/data/
 /artifacts/
 *.tmp
 .DS_Store

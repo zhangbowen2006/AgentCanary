@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "schema_version": 1,
+    "name": "Egress regression contract",
+    "default_decision": "allow",
+    "rules": [{"id": "no-private-upload", "kind": "block_labels", "tool": "net.*", "labels": ["personal", "secret"]}]
+  },
+  "cases": [
+    {
+      "name": "private data remains sensitive after summarization",
+      "trace": [
+        {"id":"read","session":"s","seq":1,"at_ms":0,"tool":"fs.read","resource":"/data/private.csv","output":"raw","labels":["personal"]},
+        {"id":"transform","session":"s","seq":2,"at_ms":10,"tool":"text.summarize","resource":"local","inputs":["raw"],"output":"summary"},
+        {"id":"send","session":"s","seq":3,"at_ms":20,"tool":"net.post","resource":"https://example.invalid/","inputs":["summary"]}
+      ],
+      "expect": [
+        {"event_id":"read","decision":"allow"},
+        {"event_id":"transform","decision":"allow"},
+        {"event_id":"send","decision":"deny","codes":["SENSITIVE_FLOW"]}
+      ]
+    },
+    {
+      "name": "public documentation can be published",
+      "trace": [
+        {"id":"read","session":"s","seq":1,"at_ms":0,"tool":"fs.read","resource":"/data/public.md","output":"doc"},
+        {"id":"send","session":"s","seq":2,"at_ms":10,"tool":"net.post","resource":"https://example.invalid/","inputs":["doc"]}
+      ],
+      "expect": [
+        {"event_id":"read","decision":"allow"},
+        {"event_id":"send","decision":"allow"}
+      ]
+    }
+  ]
+}

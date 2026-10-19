@@ -6,6 +6,8 @@ pub fn audit(String, String) -> String
 
 pub fn compare_policies(String, String, String) -> String
 
+pub fn test_suite(String) -> String
+
 // Errors
 
 // Types and methods
