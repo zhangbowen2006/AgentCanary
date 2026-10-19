@@ -1,0 +1,10 @@
+import {
+  "zhangbowen2006/agentcanary" @canary,
+  "moonbitlang/core/json",
+}
+
+options(
+  link: {
+    "js": { "exports": [ "audit", "compare_policies" ], "format": "esm" },
+  },
+)
